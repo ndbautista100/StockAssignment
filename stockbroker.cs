@@ -81,7 +81,7 @@ namespace StockAssignment
                 }
                 else if (File.Exists(path))
                 {
-                    using (TextWriter tw = new StreamWriter(path))
+                    using (TextWriter tw = File.AppendText(path))
                     {
                         tw.WriteLine(statement);
                     }

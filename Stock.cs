@@ -9,8 +9,9 @@ namespace StockAssignment
     //-----------------------------------------------------------------------------------
     public class Stock
     {
-
+        // create an event for notifications
         public event EventHandler<StockNotification> StockEvent;
+        //create an event for file writing
         public event EventHandler<EventArgs> FileStockEvent;
         //Name of our stock.
         private string _name;
@@ -25,6 +26,7 @@ namespace StockAssignment
         //Current value of the stock.
         private int _currentValue;
         private readonly Thread _thread;
+        // initialize auto properties
         public string StockName { get; set; }
         public int InitialValue { get; set;}
         public int CurrentValue { get; set; }
@@ -50,6 +52,7 @@ namespace StockAssignment
             _thread.Start();
         }
 
+        //each new thread will call this method which will wait 500 milsec and then call another function
         public void Activate()
         {
             for (int i = 0; i < 25; i++)
@@ -59,7 +62,7 @@ namespace StockAssignment
             }
         }
 
-
+        // This method will invoke the event listeners by raising them when a stock moves past the designated threshold for a notification
         public void ChangeStockValue()
         {
             var rand = new Random();
